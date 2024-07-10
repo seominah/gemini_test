@@ -28,13 +28,13 @@ for content in st.session_state.chat_session.history:
         st.markdown(content.parts[0].text)
 
 if prompt := st.chat_input("메시지를 입력하세요."):    
-    with st.chat_message(name="user", avatar=":material/thumb_up"):
+    with st.chat_message("user", avatar="😀"):
         st.markdown(prompt)    
-    with st.chat_message("ai"):        
+    with st.chat_message("ai", avatar="🥸"):        
         message_placeholder = st.empty() # DeltaGenerator 반환
         full_response = ""
         with st.spinner("메시지 처리 중입니다."):
             response = st.session_state.chat_session.send_message(prompt, stream=True)
             for chunk in response:            
                 full_response += chunk.text
-                message_placeholder.markdown(full_response)    
+                message_placeholder.markdown(full_response) 
